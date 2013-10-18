@@ -1,24 +1,32 @@
 # Dressing
 
-TODO: Write a gem description
+> A lighter weight alternative to sauce.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'dressing'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install dressing
+Dressing is a Ruby gem for running selenium tests with Sauce Labs. It's an alternative to the official `sauce` gem, which is clunky and difficult to use.
 
 ## Usage
 
-TODO: Write usage instructions here
+### RSpec + Capybara
+
+```ruby
+require 'dressing/capybara'
+
+RSpec.configure do |config|
+  config.include Dressing::Capybara::RSpec
+end
+```
+
+## Configuration
+
+```ruby
+Dressing.configure do |config|
+  config.browser = 'Chrome'
+  config.os = 'Windows 7'
+  config.version = 27
+
+  config.tunnel_identifier = ENV['TRAVIS_JOB_NUMBER']
+end
+```
 
 ## Contributing
 
