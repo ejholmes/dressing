@@ -7,6 +7,7 @@ def app
 end
 
 Capybara.app = app
+Capybara.server_port = 9999
 
 describe 'page' do
   it 'runs the page on sauce labs' do

@@ -7,6 +7,14 @@ module Dressing
     attr_accessor :username
     attr_accessor :access_key
 
+    POTENTIAL_PORTS = [
+        3000, 3001, 3030, 3210, 3333, 4000, 4001, 4040, 4321, 4502, 4503, 5000,
+        5001, 5050, 5555, 5432, 6000, 6001, 6060, 6666, 6543, 7000, 7070, 7774,
+        7777, 8000, 8001, 8003, 8031, 8080, 8081, 8765, 8888, 9000, 9001, 9080,
+        9090, 9876, 9999, 49221, 55001, 80, 443, 888, 2000, 2001, 2020, 2109,
+        2222, 2310
+    ]
+
     SAUCE_OPTIONS = %w(record-video record-screenshots capture-html tags
         sauce-advisor single-window user-extensions-url firefox-profile-url
         max-duration idle-timeout build custom-data tunnel-identifier
