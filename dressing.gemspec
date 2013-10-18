@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Dressing::VERSION
   spec.authors       = ['Eric J. Holmes']
   spec.email         = ['eric@ejholmes.net']
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ''
+  spec.description   = %q{A Capybara driver for Sauce Labs}
+  spec.summary       = %q{A Capybara driver for Sauce Labs}
+  spec.homepage      = 'https://github.com/ejholmes/dressing'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
