@@ -34,10 +34,17 @@ module Dressing
       self.access_key        = ENV['SAUCE_ACCESS_KEY']
 
       self.tunnel_identifier = ENV['SAUCE_TUNNEL_IDENTIFIER'] || ENV['TRAVIS_JOB_NUMBER']
+
+      self.build             = ENV['SAUCE_BUILD'] || ENV['TRAVIS_BUILD_NUMBER']
+      self.tags              = ENV['SAUCE_TAGS'] || travis_tags
     end
 
     def remote_url
       "http://#{username}:#{access_key}@ondemand.saucelabs.com/wd/hub"
+    end
+
+    def http_timeout
+      300
     end
 
     def to_capabilities
@@ -46,6 +53,15 @@ module Dressing
         'version' => version }.merge(
           Hash[SAUCE_OPTIONS.map { |option| [option, __send__(:"#{option.gsub('-', '_')}")] }]
         ).keep_if { |key, value| !value.nil? }
+    end
+
+    def travis_tags
+      return nil unless ENV['TRAVIS']
+      tags = ['travis']
+      tags << "branch:#{ENV['TRAVIS_BRANCH']}"
+      tags << "repo:#{ENV['TRAVIS_REPO_SLUG']}"
+      tags << "commit:#{ENV['TRAVIS_COMMIT']}"
+      tags
     end
   end
 end

@@ -1,3 +1,6 @@
+require 'selenium/webdriver'
+require 'selenium/webdriver/remote/http/persistent'
+
 require 'dressing/version'
 
 module Dressing
@@ -28,6 +31,14 @@ module Dressing
 
     def app
       ::Capybara.app
+    end
+
+    def http_client
+      @http_client ||= begin
+        client = Selenium::WebDriver::Remote::Http::Persistent.new
+        client.timeout = configuration.http_timeout
+        client
+      end
     end
 
     def configuration

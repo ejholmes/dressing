@@ -3,15 +3,22 @@ require 'capybara/rspec'
 require 'dressing/rspec'
 
 def app
-  lambda { |env| [200, {'Content-Type' => 'text/html'}, ['<body><h1>Hello world</h1></body>']] }
+  lambda { |env| [200, {'Content-Type' => 'text/html'}, ['<body><h1>Hello world</h1><a href="#">Button</a></body>']] }
 end
 
 Capybara.app = app
 Capybara.server_port = 9999
 
 describe 'page' do
-  it 'runs the page on sauce labs' do
+  2.times do |i|
+    it "runs the page on sauce labs ##{i}" do
+      visit '/'
+      expect(page).to have_content 'Hello world'
+    end
+  end
+
+  it 'clicks buttons' do
     visit '/'
-    expect(page).to have_content 'Hello world'
+    click_on 'Button'
   end
 end
