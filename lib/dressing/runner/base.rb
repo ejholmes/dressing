@@ -14,11 +14,10 @@ module Dressing
       end
 
       def run
-        Dressing.current_session = Capybara::Session.new driver
-        run_test
-      ensure
-        driver.quit
-        update_status
+        Dressing.using_driver driver do
+          run_test
+          update_status
+        end
       end
 
       def run_test

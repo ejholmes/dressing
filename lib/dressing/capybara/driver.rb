@@ -3,21 +3,18 @@ module Dressing
     class Driver < ::Capybara::Selenium::Driver
       def initialize(app, options = {})
         options.merge!(
-          browser: :remote,
           url: Dressing.configuration.remote_url,
           http_client: Dressing.http_client
         )
         super
       end
 
-      def session_id
-        browser.__send__(:bridge).session_id
+      def browser
+        @browser ||= Selenium::WebDriver.for(:remote, options.reject { |key,val| SPECIAL_OPTIONS.include?(key) })
       end
 
-      def quit
-        super
-      rescue StandardError => e
-        # Whatevs
+      def session_id
+        browser.__send__(:bridge).session_id
       end
     end
   end

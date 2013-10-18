@@ -29,6 +29,15 @@ module Dressing
       @current_session ||= ::Capybara.current_session
     end
 
+    def using_driver(driver)
+      old_session = current_session
+      Dressing.current_session = Capybara::Session.new driver
+      yield
+    ensure
+      driver.quit
+      Dressing.current_session = old_session
+    end
+
     def app
       ::Capybara.app
     end
