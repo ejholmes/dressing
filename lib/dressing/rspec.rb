@@ -3,6 +3,9 @@ require 'capybara/rspec'
 
 module Dressing
   module RSpec
+    autoload :Runner, 'dressing/rspec/runner'
+    autoload :Capabilities, 'dressing/rspec/capabilities'
+
     def page
       Dressing.current_session
     end
