@@ -19,7 +19,7 @@ end
 ```
 
 That's it, you're done. Each test will be run in it's own session on Sauce Labs and you'll be able to see whether
-the test failed or past in the Sauce Labs UI.
+the test failed or passed in the Sauce Labs UI.
 
 ## Configuration
 
