@@ -3,15 +3,12 @@ require 'capybara/rspec'
 
 module Dressing
   module RSpec
-    autoload :Runner, 'dressing/rspec/runner'
-    autoload :Capabilities, 'dressing/rspec/capabilities'
-
     def page
       Dressing.current_session
     end
 
     def self.included(config)
-      config.around { |example| Runner.run example }
+      config.around { |example| Runner::RSpec.run example }
     end
 
     ::RSpec.configure do |config|

@@ -1,6 +1,6 @@
 module Dressing
-  module RSpec
-    class Capabilities
+  module Capabilities
+    class Base
       attr_reader :example
 
       def initialize(example)
@@ -15,10 +15,6 @@ module Dressing
 
       def configuration
         Dressing.configuration
-      end
-
-      def job_name
-        example.metadata[:full_description]
       end
 
     end

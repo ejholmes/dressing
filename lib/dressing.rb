@@ -4,6 +4,16 @@ module Dressing
   autoload :Configuration, 'dressing/configuration'
   autoload :RSpec, 'dressing/rspec'
 
+  module Runner
+    autoload :Base, 'dressing/runner/base'
+    autoload :RSpec, 'dressing/runner/rspec'
+  end
+
+  module Capabilities
+    autoload :Base, 'dressing/capabilities/base'
+    autoload :RSpec, 'dressing/capabilities/rspec'
+  end
+
   module Capybara
     autoload :Driver, 'dressing/capybara/driver'
     autoload :Session, 'dressing/capybara/session'
