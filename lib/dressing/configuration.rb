@@ -35,8 +35,9 @@ module Dressing
     def to_capabilities
       { 'browserName' => browser,
         'platform' => os,
-        'version' => version,
-        'tunnel-identifier' => tunnel_identifier }
+        'version' => version }.merge(
+          Hash[SAUCE_OPTIONS.map { |option| [option, __send__(:"#{option.gsub('-', '_')}")] }]
+        ).keep_if { |key, value| !value.nil? }
     end
   end
 end
