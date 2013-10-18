@@ -8,7 +8,7 @@ module Dressing
     end
 
     def self.included(config)
-      config.around { |example| Runner::RSpec.run example }
+      config.around { |test| Runner::RSpec.run test, example }
     end
 
     ::RSpec.configure do |config|

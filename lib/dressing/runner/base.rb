@@ -1,22 +1,29 @@
+require 'sauce_whisk'
+
 module Dressing
   module Runner
     class Base
-      attr_reader :example
+      attr_reader :test
 
       def self.run(*args)
         new(*args).run
       end
 
-      def initialize(example)
-        @example = example
+      def initialize(test)
+        @test = test
       end
 
       def run
         Dressing.current_session = Capybara::Session.new driver
-        run_example
+        run_test
+        update_status
       end
 
-      def run_example
+      def run_test
+        raise NotImplementedError
+      end
+
+      def passed?
         raise NotImplementedError
       end
 
@@ -30,8 +37,16 @@ module Dressing
         @driver ||= Capybara::Driver.new app, desired_capabilities: capabilities
       end
 
+      def session_id
+        driver.session_id
+      end
+
+      def update_status
+        SauceWhisk::Jobs.change_status driver.session_id, passed?
+      end
+
       def capabilities
-        capabilities_class.new(example).to_h
+        capabilities_class.new(test).to_h
       end
 
       def capabilities_class

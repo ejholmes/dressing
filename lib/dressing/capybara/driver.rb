@@ -8,6 +8,10 @@ module Dressing
         )
         super
       end
+
+      def session_id
+        browser.__send__(:bridge).session_id
+      end
     end
   end
 end
