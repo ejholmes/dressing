@@ -22,7 +22,7 @@ module Dressing
 
           begin
             __send__(:"_base_#{name}", *args, &block)
-          rescue *RETRY_ONE => e
+          rescue *RETRY_ON => e
             if retries > 0
               retries -= 1
               puts "Received an exception (#{e}), retrying."
@@ -35,19 +35,26 @@ module Dressing
 
       def initialize(app, options = {})
         options.merge!(
+          browser: :remote,
           url: Dressing.configuration.remote_url,
           http_client: Dressing.http_client
         )
         super
       end
 
-      def browser
-        @browser ||= Selenium::WebDriver.for(:remote, options.reject { |key,val| SPECIAL_OPTIONS.include?(key) })
-      end
-
       def session_id
         browser.__send__(:bridge).session_id
       end
+
+      def quit
+        return if @quit
+        @quit = true
+        super
+      end
     end
   end
+end
+
+Capybara.register_driver :sauce do |app|
+  Dressing::Capybara::Driver.new(app, desired_capabilities: Dressing.configuration.to_capabilities)
 end
