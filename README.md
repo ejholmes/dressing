@@ -3,7 +3,7 @@
 > A lighter weight alternative to sauce.
 
 Dressing is a Ruby gem for running [Capybara](https://github.com/jnicklas/capybara) scenarios with [Sauce Labs](https://saucelabs.com).
-It's an alternative to the official `sauce` gem, which is clunky and difficult to use.
+It's an alternative to the official `sauce` gem, which is clunky, bloated and difficult to use.
 
 ## Usage
 
@@ -11,9 +11,14 @@ It's an alternative to the official `sauce` gem, which is clunky and difficult t
 
 ```ruby
 require 'dressing/rspec'
+
+RSpec.configure do |config|
+  config.include Capybara::DSL
+  config.include Dressing::RSpec
+end
 ```
 
-That's it, you're done. Each test will be run in it's own VM on Sauce Labs and you'll be able to see whether
+That's it, you're done. Each test will be run in it's own session on Sauce Labs and you'll be able to see whether
 the test failed or past in the Sauce Labs UI.
 
 ## Configuration

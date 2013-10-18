@@ -9,6 +9,11 @@ end
 Capybara.app = app
 Capybara.server_port = 9999
 
+RSpec.configure do |config|
+  config.include Capybara::DSL
+  config.include Dressing::RSpec
+end
+
 describe 'page' do
   2.times do |i|
     it "runs the page on sauce labs ##{i}" do
