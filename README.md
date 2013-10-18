@@ -2,7 +2,8 @@
 
 > A lighter weight alternative to sauce.
 
-Dressing is a Ruby gem for running selenium tests with Sauce Labs. It's an alternative to the official `sauce` gem, which is clunky and difficult to use.
+Dressing is a Ruby gem for running [Capybara](https://github.com/jnicklas/capybara) scenarios with [Sauce Labs](https://saucelabs.com).
+It's an alternative to the official `sauce` gem, which is clunky and difficult to use.
 
 ## Usage
 
