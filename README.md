@@ -10,7 +10,7 @@ It's an alternative to the official `sauce` gem, which is clunky and difficult t
 ### RSpec + Capybara
 
 ```ruby
-require 'dressing/capybara/rspec'
+require 'dressing/rspec'
 ```
 
 That's it, you're done. Each test will be run in it's own VM on Sauce Labs and you'll be able to see whether

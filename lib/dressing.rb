@@ -3,10 +3,10 @@ require 'dressing/version'
 module Dressing
   autoload :Configuration, 'dressing/configuration'
   autoload :Capabilities, 'dressing/capabilities'
+  autoload :Runner, 'dressing/runner'
+  autoload :RSpec, 'dressing/rspec'
 
   module Capybara
-    autoload :RSpec, 'dressing/capybara/rspec'
-    autoload :Runner, 'dressing/capybara/runner'
     autoload :Driver, 'dressing/capybara/driver'
     autoload :Session, 'dressing/capybara/session'
   end
