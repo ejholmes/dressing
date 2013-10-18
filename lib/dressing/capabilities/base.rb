@@ -11,6 +11,10 @@ module Dressing
         { 'job-name' => job_name }.merge(configuration.to_capabilities)
       end
 
+      def job_name
+        raise NotImplementedError
+      end
+
     private
 
       def configuration
