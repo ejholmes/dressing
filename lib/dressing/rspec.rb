@@ -1,3 +1,4 @@
+require 'dressing'
 require 'rspec'
 require 'capybara/rspec'
 
