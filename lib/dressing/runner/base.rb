@@ -17,6 +17,8 @@ module Dressing
         Dressing.current_session = Capybara::Session.new driver
         run_test
         update_status
+      ensure
+        driver.quit
       end
 
       def run_test
